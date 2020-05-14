@@ -86,6 +86,7 @@
 		document.getElementById("customer_NM").value = nm;
 
 		pt_list();
+		cart_list();
 	}
 
 	function pt_list() {
@@ -181,44 +182,62 @@
 		if (cd === '') {
 			alert("업체를 선택해 주세요");
 		} else {
+			var list = [];
+			var param = [];
 			var checkbox = $("input:checkbox.pt:checked");
-			var table = "<table>"+$("table").eq(1).html();
-			checkbox.each(function(i) {
+			checkbox.each(function(i){
 				var tr = checkbox.parent().parent().eq(i);
 				var td = tr.children();
-				console.log(td.eq(15).val());
-				if (td.eq(15).val() == 1) {
-					
-				} else {
-					
-					table += "<tr>"
-					td.each(function(j) {
-						if(j!=11 && j!=12 ){
-						if(j==9){
-							table+="<td><input type='text' name='amount'/></td>";
-						}
-						if(j==14 || j==15 ){
-							table+=td.eq(j).html();
-						}else if(j==16){
-							table+="<td>"
-							table+=td.eq(j).val();
-							table+="</td>";
-						}else{
-						table+="<td>"
-						table+=td.eq(j).html();
-						table+="</td>";
-						}
-						}
-					});
-					td.eq(15).val(1);
-					table += "</tr>";
-				}
-			
+				var date = new Date(td.eq(16).val());
 
-			})
-			table += "</table>";
-			$('#cart').html(table);
+			$.ajax({
+				url : "cart_add",
+				method : "POST",
+				data :{"customer_pk":cd,
+			 	"exp_D" : td.eq(11).text(),
+				"ptcon_fk" :td.eq(14).val(),
+				"delivery_date" :td.eq(16).val() ,
+				"amount" : 1,								
+				"supply_price" :td.eq(8).text() ,
+				"vat":td.eq(9).text() ,
+				"column5":td.eq(10).text() },
+				success : function(data) {
+					alert("성공");
+				}
+					});
+			});
+			cart_list();
 		}
+	}
+	function cart_list(){
+		var cd = document.getElementById("customer_cd").value;
+		$.ajax({
+			url : "cart_list",
+			method : "POST",
+			data :{"customer_pk":cd,
+		 	},
+			success : function(data) {
+				alert(data);
+				var table = "<table><tr><th>선택</th>	<th>마감일</th><th>센터</th><th>상품코드</th>	<th>상품명</th><th>단위</th><th>원산지</th><th>보관방법</th>"+
+				"<th>면/과세</th>	<th>단가</th>	<th>주문수량</th><th>부가세</th>	<th>합계</th>	<th>구매처</th><th>인수일자</th>	</tr>";
+				for(var i=0; i<data.length;i++){
+					var customer_pk = data[i].customer_pk;
+					var exp_D = data[i].exp_D;
+					var ptcon_fk = data[i].ptcon_fk;
+					var delivery_date = data[i].delivery_date;
+					var amount = data[i].amount;
+					var supply_price = data[i].supply_price;
+					var vat = data[i].vat;
+					var column5 = data[i].column5;
+					
+					table+="<tr><td>"++ "</td><td>"
+					table+="</td></tr>";
+				}
+				table +="</table>";
+				$('#cart').html(table);
+				}
+				});
+			
 	}
 
 	function minus_cart() {
@@ -315,7 +334,7 @@
 		<div class="contentbox" style="overflow: scroll; height: 300px;">
 			<div>
 				<div class="table" id="search">
-					<table >
+					<table>
 						<tr>
 							<th>선택</th>
 							<th>센터</th>
@@ -351,6 +370,7 @@
 					<table>
 						<tr>
 							<th>선택</th>
+							<th>마감일</th>
 							<th>센터</th>
 							<th>상품코드</th>
 							<th>상품명</th>

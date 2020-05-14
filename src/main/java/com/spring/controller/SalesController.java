@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.domain.CartVO;
 import com.spring.domain.Center_ptVO;
 import com.spring.domain.CustomerVO;
 import com.spring.domain.SearchVO;
@@ -101,5 +104,33 @@ public class SalesController {
 		return list;
 	}
 	
-	
+	//장바구니 담기
+		@PostMapping(value="cart_add")
+		@ResponseBody
+		public boolean  cart_add(CartVO vo) {
+			log.info("판매처 위치에 따른 상품리스트");
+		
+			try {		
+				service3.cart_add(vo);
+				 return true;
+			} catch (Exception e) {
+				e.printStackTrace();				
+			}
+			return false;
+		}
+		
+		//장바구니 담기
+				@PostMapping(value="cart_list")
+				@ResponseBody
+				public List<CartVO>  cart_list(long customer_pk) {
+					log.info("판매처 위치에 따른 상품리스트");
+					List<CartVO> list= null;
+					try {		
+						list = service3.cart_List(customer_pk);
+						 
+					} catch (Exception e) {
+						e.printStackTrace();				
+					}
+					return list;
+				}
 }

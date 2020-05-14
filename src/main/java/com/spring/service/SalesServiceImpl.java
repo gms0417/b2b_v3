@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.spring.domain.CartVO;
 import com.spring.domain.Center_ptVO;
 import com.spring.domain.CustomerVO;
 import com.spring.domain.SalesVO;
@@ -38,6 +38,30 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public List<Center_ptVO> center_ptList(int day,String customer_cd,String delivery) throws Exception {
 		return mapper.center_ptList(day, customer_cd, delivery);
+	}
+
+	@Override
+	public boolean cart_add(CartVO vo) throws Exception {
+		
+		return mapper.cart_add(vo)>0?true:false;
+	}
+
+	@Override
+	public boolean cart_update(CartVO vo) throws Exception {
+		
+		return mapper.cart_update(vo)>0?true:false;
+	}
+
+	@Override
+	public boolean cart_delete(CartVO vo) throws Exception {
+		
+		return mapper.cart_delete(vo)>0?true:false;
+	}
+
+	@Override
+	public List<CartVO> cart_List(long customer) throws Exception {
+		
+		return mapper.cart_List(customer);
 	}
 
 }
