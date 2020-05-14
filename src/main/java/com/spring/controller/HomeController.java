@@ -80,6 +80,7 @@ public class HomeController {
 			if(pw_db !=null) {
 			if(!passwordEncoder.matches(vo.getPw(),service_pw.login(vo))){
 				log.info("실패1");
+<<<<<<< HEAD
 				return "redirect:/main";
 			}else {
 				log.info("성공");
@@ -88,6 +89,20 @@ public class HomeController {
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
+=======
+				model.addAttribute("login", "fail");
+				return "view/login";
+			}else {
+				model.addAttribute("login","success");
+				log.info("성공");
+			}
+			}
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+			model.addAttribute("login", "fail");
+			return "view/login";
+>>>>>>> branch 'master' of https://github.com/gms0417/b2b_v3
 		}
 		
 		try {
