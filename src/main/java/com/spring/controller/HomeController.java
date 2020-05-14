@@ -80,14 +80,18 @@ public class HomeController {
 			if(pw_db !=null) {
 			if(!passwordEncoder.matches(vo.getPw(),service_pw.login(vo))){
 				log.info("실패1");
-				return "redirect:/main";
+				model.addAttribute("login", "fail");
+				return "view/login";
 			}else {
+				model.addAttribute("login","success");
 				log.info("성공");
 			}
 			}
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
+			model.addAttribute("login", "fail");
+			return "view/login";
 		}
 		
 		try {
