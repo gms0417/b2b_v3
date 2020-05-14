@@ -1,6 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../layout/header3.jsp"></jsp:include>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+<link	href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css"	rel="stylesheet" />
+
+<script>
+function changeTrColor(trObj, oldColor, newColor) {
+	trObj.style.backgroundColor = newColor;
+	trObj.onmouseout = function() {
+		trObj.style.backgroundColor = oldColor;
+	}
+}
+</script>
+ 
+ 
+ 
       <section>
         <article class="contents">
           <div class="form_header">
@@ -9,7 +25,7 @@
                 <span class="material-icons">
                   assignment
                 </span>
-                <a> 매입처리</a>
+                <a> 일일 주문내역</a>
               </div>
               <div id="button">
                 <button
@@ -38,10 +54,7 @@
                   <input type="text" />
                 </label>
 
-                <label for="">
-                  <span>상품명/코드</span>
-                  <input type="text" />
-                </label>
+         
               </div>
             </form>
           </div>
@@ -52,40 +65,41 @@
               <div class="table">
                 <table>
                   <tr>
-                    <th>선택</th>
+                  	<th>No</th>
+                    <th>사업자번호</th>
+                    <th>사업자명</th>
+                    <th>주문번호</th>
+                    <th>날짜</th>
+                    <th>고객명</th>
                     <th>센터</th>
                     <th>상품코드</th>
-                    <th>상품</th>
-                    <th>단위</th>
-                    <th>원산지</th>
-                    <th>보관방법</th>
-                    <th>면/과세</th>
-                    <th>수량</th>
-                    <th>구매처</th>
-                    <th>구매처명</th>
-                    <th>카테고리</th>
+                    <th>상품명</th>
+                    <th>단위</th>            
+                    <th>수량</th>             
                     <th>MD</th>
                   </tr>
 
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1000</td>
-                    <td>101000</td>
-                    <td>
-                      <a href="price_change_view.html">
-                        흙당근(상품 130~200g/개 20Kg/BOX)</a
-                      >
-                    </td>
-                    <td>BOX</td>
-                    <td>KR</td>
-                    <td>상온</td>
-                    <td>면세</td>
-                    <td><input type="text" /></td>
-                    <td>6008112345</td>
-                    <td>스타벅스</td>
-                    <td>당근</td>
-                    <td>홍길동</td>
+
+                  <c:forEach var="vo" items="${list}">
+                  <tr onclick="javascript:clickTrEvent(this)"
+								onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
+                  
+                   	<td>No</td>
+                   	<td>${vo.creditor_CD }</td>
+                   	<td>${vo.creditor_NM }</td>
+                    <td>${vo.order_CD}</td>
+                    <td>${vo.regdate }</td>
+                    <td>${vo.customer_NM }</td>
+                    <td>${vo.center }</td>
+                    <td>${vo.product_CD}</td>
+                    <td>${vo.product_NM}</td>
+                    <td>${vo.unit}</td>            
+                    <td>${vo.amount}</td>             
+                    <td>MD</td>
                   </tr>
+                  </c:forEach>
+                  
+                  
                 </table>
               </div>
             </div>

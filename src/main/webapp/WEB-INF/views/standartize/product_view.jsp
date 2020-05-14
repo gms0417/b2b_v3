@@ -272,15 +272,15 @@
 		<a> 상품관리</a>
 	</div>
 	<div class="button">
-<<<<<<< HEAD
+
 		<button type="button" onclick="return check();">
 		<span class="material-icons"> cached </span> 수정</button>
 		<button type="reset" onclick="javascript:update_edit_close();">
 		<span class="material-icons"> highlight_off </span> 닫기</button>
-=======
+
 		<button type="button" onclick="check();">수정</button>
 		<button type="reset" onclick="javascript:update_edit_close();">닫기</button>
->>>>>>> refs/remotes/origin/master
+
 	</div>
 	<form id="pt_update" action="update_product" method="post">
 		<!--   -->
@@ -315,13 +315,11 @@
 			</tr>
 			<tr>
 				<td>원 산 지</td>
-<<<<<<< HEAD
-				<td><select id="origin" class="form-control" name="origin_nm"
-					style="width: 100%">
-=======
+				<td><select id="origin" class="form-control" name="origin_nm" style="width: 100%">
+
 				<td><select id="origin" class="form-control" name="origin_CD"
 					style="width: 80%">
->>>>>>> refs/remotes/origin/master
+
 						<c:forEach var="c" items="${origin}" varStatus="i">
 							<option value="${c.origin_cd}">${c.origin_nm}</option>
 						</c:forEach>

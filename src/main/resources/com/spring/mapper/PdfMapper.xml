@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.PdfMapper">
+
+
+
+<!-- 공급받는자용 정보 가져오기 -->
+
+
+
+
+<!-- 주문번호, 고객코드, 상품연결코드, 상품명, 구매처, 수량, 단가, 단위, 면과세, 센터 -->
+<select id="orderList" resultType="com.spring.domain.PdfVO">
+select  
+
+ct.pre_nm pre_NM, 
+ct.address adress,
+ctb.customer_nm creditor_NM,
+order_pk order_CD, 
+ot.customer_fk customer_CD,
+ct.creditor_NM customer_NM,
+ptcon_pk, 
+ot."date" regdate,
+pd.pt_nm product_NM, 
+pd.pt_cd product_CD,
+creditor_fk creditor_CD,
+ot.amount amount,
+p.purchase_cost product_cost,
+pd.unit unit,
+pd.tax_fk tax,
+p.center_fk center,
+p.purchase_cost*ot.amount supply,
+(p.purchase_cost*ot.amount)*tax_fk*0.1 tax_sum,
+((p.purchase_cost*ot.amount)*tax_fk*0.1)+(p.purchase_cost*ot.amount) total
+from order_detail_tb o, productcon_tb p, order_tb ot, product_tb pd, creditor_tb ct, customer_Tb ctb
+where
+o.ptcon_pk=p.ptcon_cd
+and
+o.order_pk=ot.order_cd
+and
+p.pt_fk=pd.pt_cd
+and
+p.creditor_fk=ct.creditor_cd
+and
+ctb.customer_cd=ot.customer_fk
+</select>
+
+
+</mapper>

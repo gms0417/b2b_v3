@@ -15,8 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.CateVO;
 import com.spring.domain.CreditorVO;
+import com.spring.domain.PdfVO;
 import com.spring.domain.ProductVO;
 import com.spring.domain.SearchVO;
+import com.spring.service.PdfService;
 import com.spring.service.PriceService;
 import com.spring.service.ProductService;
 import com.spring.service.PurchaseService;
@@ -37,12 +39,11 @@ public class PurchaseController {
 	@Autowired
 	PurchaseService service3;
 	
+	@Autowired
+	PdfService service4;
 	
-	@GetMapping(value="purchase_view")
-	public void purchase() {
-		log.info("매입처리 페이지");
-		
-	}
+	
+
 	
 	
 	@GetMapping(value="purchase_ledger")
@@ -106,6 +107,34 @@ public class PurchaseController {
 			 list = service3.search_center(vo);
 		} catch (Exception e) {
 			e.printStackTrace();			
+		}
+		return list;
+	}
+	
+	
+	
+	
+	// 일일 주문내역
+	@GetMapping(value="purchase_view")
+	public void getOrderList(Model model){
+		
+		try {
+			model.addAttribute("list", service4.getOrderList());
+			log.info("!!!!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	// 일일 주문내역
+	public List<PdfVO> orderList(){
+		List<PdfVO> list = null;
+		try {
+			
+			list = service4.getOrderList();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
