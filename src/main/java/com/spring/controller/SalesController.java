@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/sales/*")
 public class SalesController {
+
 	
 	@Autowired
 	SalesService service3;

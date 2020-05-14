@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.spring</groupId>
    <artifactId>controller</artifactId>
@@ -134,6 +134,62 @@
          <version>1.2</version>
       </dependency>
    
+
+		 
+
+	
+	<!-- pdf --> 
+
+<dependency>
+
+   <groupId>com.itextpdf</groupId>
+
+    <artifactId>itextpdf</artifactId>
+
+    <version>5.5.13</version>
+
+</dependency>
+
+<dependency>
+
+      <groupId>com.itextpdf</groupId>
+
+      <artifactId>itext-pdfa</artifactId>
+
+      <version>5.5.9</version>
+
+</dependency>
+
+<dependency>
+
+     <groupId>com.itextpdf</groupId>
+
+     <artifactId>itext-xtra</artifactId>
+
+     <version>5.5.9</version>
+
+</dependency>
+
+<dependency>
+
+    <groupId>com.itextpdf.tool</groupId>
+
+    <artifactId>xmlworker</artifactId>
+
+    <version>5.5.9</version>
+
+</dependency>
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
       <!-- Test -->
       <dependency>
          <groupId>junit</groupId>
@@ -147,6 +203,22 @@
    <artifactId>mail</artifactId>
    <version>1.4.7</version>
 </dependency>
+
+
+      <!-- Test -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.7</version>
+         <scope>test</scope>
+      </dependency>   
+      <!-- mail library -->
+<dependency>
+   <groupId>javax.mail</groupId>
+   <artifactId>mail</artifactId>
+   <version>1.4.7</version>
+</dependency>
+
 
 <!-- mail 서포트 -->
 <dependency>

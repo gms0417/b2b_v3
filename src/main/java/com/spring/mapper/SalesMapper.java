@@ -7,7 +7,6 @@ import com.spring.domain.CustomerVO;
 import com.spring.domain.SalesVO;
 import com.spring.domain.SearchVO;
 
-
 public interface SalesMapper {
 	public List<SalesVO> salesList();
 	public List<CustomerVO> customerList();
