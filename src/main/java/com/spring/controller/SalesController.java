@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,7 +38,7 @@ public class SalesController {
 	public void sales_creation(Model model) {
 		log.info("매출등록 페이지");
 		try {
-			model.addAttribute("list2",service3.salesList());			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -67,24 +69,32 @@ public class SalesController {
 		log.info(vo.toString());
 		List<CustomerVO> list = null;
 		try {		
-			 list = service3.customerSearch(vo);
+			list=service3.customerSearch(vo);
 		} catch (Exception e) {
 			e.printStackTrace();			
 		}
 		return list;
 	}
 	
-	//판매처 검색 메소드
+	//판매처 위치에 따른 상품리스트
 	@PostMapping(value="center_ptList")
 	@ResponseBody
-	public List<Center_ptVO>  center_ptList(String customer_cd) {
+	public List<Center_ptVO>  center_ptList(String customer_cd,String delivery) {
+		log.info("판매처 위치에 따른 상품리스트");
 		log.info(customer_cd);
 		List<Center_ptVO> list = null;
+		int day = 0;
 		try {		
-			 list = service3.center_ptList(customer_cd);
-			 log.info(list.toString());
+			Date today = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("HH");
+			if(Integer.parseInt(format.format(today))>=17) {
+				//17시 지났다면
+				day = 1;
+			}
+			 list = service3.center_ptList(day,customer_cd,delivery);
+			 
 		} catch (Exception e) {
-			e.printStackTrace();			
+			e.printStackTrace();				
 		}
 		return list;
 	}

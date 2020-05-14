@@ -34,9 +34,8 @@ public class SalesServiceImpl implements SalesService {
 	}
 
 	@Override
-	public List<Center_ptVO> center_ptList(String customer_cd) throws Exception {
-		
-		return mapper.center_ptList(customer_cd);
+	public List<Center_ptVO> center_ptList(int day,String customer_cd,String delivery) throws Exception {
+		return mapper.center_ptList(day, customer_cd, delivery);
 	}
 
 }

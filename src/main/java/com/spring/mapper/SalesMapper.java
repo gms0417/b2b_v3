@@ -12,6 +12,6 @@ public interface SalesMapper {
 	public List<SalesVO> salesList();
 	public List<CustomerVO> customerList();
 	public List<CustomerVO> customerSearch(SearchVO vo);
-	public List<Center_ptVO> center_ptList(String customer_cd);
+	public List<Center_ptVO> center_ptList(int day,String customer_cd,String delivery);
 	
 }

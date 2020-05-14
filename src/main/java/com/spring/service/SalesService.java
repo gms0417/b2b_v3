@@ -11,5 +11,5 @@ public interface SalesService {
 	public List<SalesVO> salesList() throws Exception;
 	public List<CustomerVO> customerList() throws Exception;
 	public List<CustomerVO> customerSearch(SearchVO vo) throws Exception;
-	public List<Center_ptVO> center_ptList(String customer_cd)throws Exception;
+	public List<Center_ptVO> center_ptList(int day,String customer_cd,String delivery)throws Exception;
 }
