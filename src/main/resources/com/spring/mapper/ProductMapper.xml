@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.ProductMapper">
+
+<!-- 상품 검색 & 색인 검색 -->
+<select id="getList" resultType="com.spring.domain.ProductVO">
+<![CDATA[
+	select * 
+	from(
+		select rownum rn,pt_cd,pt_NM,unit,tax_NM,origin_NM,storage_NM,exp_D,category_fk,cate_NM,emp_fk,emp_NM
+		from(select pt_cd,pt_NM,unit,tax_NM,origin_NM,storage_NM,exp_D,category_fk,cate_NM,emp_fk,emp_NM
+			from PRODUCT_TB p left join tax_tb t on p.tax_fk =t.tax_cd
+			left join origin_tb o on p.origin_fk = o.origin_cd
+			left join storage_tb s on p.storage_fk = s.storage_cd
+			left join category_tb c on p.category_fk = c.cate_cd
+			left join emp_tb e on p.emp_fk = e.emp_cd order by pt_cd desc)	
+		where 
+	]]>	
+		<include refid="criteria"></include>
+	<![CDATA[   
+    	rownum <= #{pageNum}*#{amount})
+    	where rn> (#{pageNum}-1)*#{amount}
+     ]]>		
+	    	
+</select>
+
+<!-- 페이지 나누기를 위한 전체 상품 게시물 수 구하기 -->
+<select id="getTotalCount" resultType="int">
+<![CDATA[
+	select count(*)
+		from(select pt_cd    
+		from PRODUCT_TB p left join tax_tb t on p.tax_fk =t.tax_cd left join origin_tb o on p.origin_fk = o.origin_cd    
+		left join storage_tb s on p.storage_fk = s.storage_cd    left join category_tb c on p.category_fk = c.cate_cd   
+		left join emp_tb e on p.emp_fk = e.emp_cd where
+	]]>	
+		<include refid="criteria"></include>
+	pt_cd>0)
+	</select>
+
+<!-- 상품 검색-->
+<select id="search_pt2" resultType="com.spring.domain.ProductVO">
+	select * 
+	from product_tb
+	where
+	<if test="criteria=='pt_nm'">
+		pt_nm Like '%'||#{keyword}||'%'
+	</if>
+	<if test="criteria=='pt_cd'">
+		pt_cd Like '%'||#{keyword}||'%'
+	</if>
+</select>
+
+<select id="getCate" resultType="com.spring.domain.CateVO">
+	select cate_cd,cate_NM from category_tb where cate_cd>0
+</select>
+
+
+<!-- 동적 sql -->
+<sql id="criteria">
+	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item='type'>
+			<trim prefix="OR">
+				<choose>
+					<when test="type=='S'.toString()">
+						pt_cd like '%'||#{keyword}||'%'
+					</when>					
+					<when test="type=='N'.toString()">
+						pt_NM like '%'||#{keyword}||'%'
+					</when>					
+					<when test="type=='C'.toString()">
+						category_fk like '%'||#{category}||'%'						
+					</when>												
+				</choose>				
+			</trim>
+		</foreach>		
+	</trim>	
+</sql>	
+
+<update id="update_pt">
+	update product_tb set pt_nm= #{pt_NM},
+	category_fk=#{category_fk},
+	unit=#{unit},
+	tax_fk=#{tax_cd},
+	storage_fk=#{storage_cd},
+	origin_fk=#{origin_CD},
+	exp_D=#{exp_D}
+	where pt_cd=#{pt_cd}
+</update>
+
+
+<insert id="insert_pt">	
+	insert into product_tb(pt_cd,pt_nm,unit,tax_fk,origin_fk,storage_fk,exp_d,category_fk)
+	values(
+	<choose>
+		<when test='category_fk gte 100 and category_fk lt 200'>
+		PT_CD1.NEXTVAL   
+		</when>
+		<when test='category_fk gte 200 and category_fk lt 300'>
+		PT_CD2.NEXTVAL   
+		</when>
+		<when test='category_fk gte 300 and category_fk lt 400'>
+		PT_CD3.NEXTVAL   
+		</when>
+		<when test='category_fk gte 400 and category_fk lt 500'>
+		PT_CD4.NEXTVAL   
+		</when>
+		<when test='category_fk gte 500 and category_fk lt 600'>
+		PT_CD5.NEXTVAL   
+		</when>
+	</choose>	
+	
+	,#{pt_NM},#{unit},#{tax_cd},#{origin_CD},#{storage_cd},#{exp_D},#{category_fk})
+</insert>
+
+<select id="getOrigin" resultType="com.spring.domain.OriginVO">
+	select origin_cd,origin_NM from origin_tb
+</select>	
+
+</mapper>
