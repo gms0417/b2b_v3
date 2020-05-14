@@ -84,6 +84,7 @@ public class SalesController {
 		log.info("판매처 위치에 따른 상품리스트");
 		log.info(customer_cd);
 		List<Center_ptVO> list = null;
+		delivery=delivery.replace("-", "");
 		int day = 0;
 		try {		
 			Date today = new Date();

@@ -46,8 +46,7 @@
  
 	<select id="center_ptList" resultType="com.spring.domain.Center_ptVO">
 		select
-		center_fk,ptcon_cd,pt_cd,pt_NM,unit,origin_NM,storage_NM,tax_NM,sale_cost,p.exp_d
-		exp_d,exp_t from productcon_tb p
+		center_fk,ptcon_cd,pt_cd,pt_NM,unit,origin_NM,storage_NM,tax_NM,sale_cost,sale_cost*tax_fk*0.1 tax,(sale_cost*tax_fk*0.1)+sale_cost total,p.exp_d exp_d ,exp_t,creditor_fk from productcon_tb p
 		left join (
 		select * from product_tb
 		left join origin_tb on origin_fk = origin_cd
@@ -57,9 +56,9 @@
 		where center_fk =
 		(select center_fk from customer_tb 
 		where customer_cd = #{customer_cd}) 
-		and (select to_number(to_char(sysdate+#{day}+exp_D,'YYYYMMDD'))from dual)
+		and (select to_number(to_char(sysdate+#{day}+p.exp_D,'YYYYMMDD'))from dual)
 		<![CDATA[
-		<=#{delivery}) order by pt_cd 
+		<=#{delivery} order by exp_d,pt_cd
 			]]>	
 	</select>
 	
