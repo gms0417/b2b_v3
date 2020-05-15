@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="../layout/header4.jsp"></jsp:include>
+<jsp:include page="../layout/header3.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(function() {
@@ -365,21 +365,20 @@
 					</button>
 				</div>
 				<div class="formbox">
-					<div>
-						<label for="" style="padding: 0 5px 0 20px;">업체코드</label> <input
-							id="customer_cd" readonly onclick="javascript:customer_modal()"
-							name="customer_cd"> <label for=""
-							style="padding: 0 5px 0 20px;">업 체 명</label> <input
-							id="customer_NM" readonly> <label for=""
-							style="padding: 0 5px 0 20px;"> <a id="point-star">*</a>
-							<span style="padding: 0">인수일자</span> <input type="text"
+					
+						<label for="" style="padding: 0 5px 0 20px;">고객코드</label> 
+						<input							id="customer_cd" readonly onclick="javascript:customer_modal()"							name="customer_cd"> 
+					
+					<label for=""	style="padding: 0 5px 0 20px;"> <a id="point-star">*</a>
+							<span style="padding: 0">인수일자</span>
+<input type="text"
 							id="datePicker" class="form-control" name="delivery"
-							style="display: inline; width: 300px">
+							style="display: inline; width: 150px; height:30px; border:1px solid  initial">
 						</label>
-					</div>
+				
 
 					<label for="" style="padding: 0 5px 0 20px;"> <a
-						id="point-star">*</a> <span style="padding: 0">출 고 처</span> <input />
+						id="point-star">*</a> <span style="padding: 0">센터</span> <input />
 					</label> <label for="" style="padding: 0 5px 0 20px;"> <span
 						style="padding: 0">상품코드/명</span> <input />
 					</label>
@@ -414,7 +413,7 @@
 			</div>
 		</div>
 
-		<div class="order_icon" style="margin: 11px">
+		<div class="order_icon" style="margin: 11px; text-align: center;">
 			<span class="material-icons" style="border: 1px solid #cacaca;"
 				onclick="javascript:add_cart()"> keyboard_arrow_down </span> <span
 				class="material-icons" style="border: 1px solid #cacaca;"

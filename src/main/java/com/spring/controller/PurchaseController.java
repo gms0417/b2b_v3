@@ -47,8 +47,10 @@ public class PurchaseController {
 	
 	
 	@GetMapping(value="purchase_ledger")
-	public void purchase_ledger() {
+	public void purchase_ledger(Model model) {
 		log.info("매입원장 페이지");
+		
+		model.addAttribute("list", service3.purchase_ledger());
 		
 	}
 	

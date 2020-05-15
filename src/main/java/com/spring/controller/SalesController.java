@@ -50,10 +50,17 @@ public class SalesController {
 	}
 	
 	@GetMapping(value="sales_ledger")
-	public void sales_ledger() {
+	public void sales_ledger(Model model) {
 		log.info("매출원장 페이지");
 		
+		try {
+			model.addAttribute("list", service3.sales_ledger());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
+	
 	
 	@GetMapping(value="sales_exception_price")
 	public void sales_exception_price() {

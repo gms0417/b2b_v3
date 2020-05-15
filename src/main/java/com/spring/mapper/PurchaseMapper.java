@@ -15,4 +15,6 @@ public interface PurchaseMapper {
 	public List<CateVO>search_center(SearchVO vo);
 	public List<CreditorVO> creditorList();
 	public List<PdfVO> getOrderList();
+	
+	public List<PdfVO> purchase_ledger();
 }

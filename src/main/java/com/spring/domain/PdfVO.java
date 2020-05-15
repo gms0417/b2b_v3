@@ -52,5 +52,17 @@ public class PdfVO {
 	
 	
 	
+	
+	// 판매단가, 매출액, 부가세, 총합
+	private int s_product_cost;
+	private int s_supply;
+	private int s_tax_sum;
+	private int s_total;
+	
+	
+	// 카테고리, md
+	private int category_CD;
+	private String MD;
+	
 
 }

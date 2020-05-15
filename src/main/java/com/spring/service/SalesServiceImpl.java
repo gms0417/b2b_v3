@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.spring.domain.CartVO;
 import com.spring.domain.Center_ptVO;
 import com.spring.domain.CustomerVO;
+import com.spring.domain.PdfVO;
 import com.spring.domain.SalesVO;
 import com.spring.domain.SearchVO;
 import com.spring.mapper.SalesMapper;
@@ -78,6 +79,12 @@ public class SalesServiceImpl implements SalesService {
 	public CustomerVO select_cu(long customer_rcd) throws Exception {
 		
 		return mapper.select_cu(customer_rcd);
+	}
+
+	@Override
+	public List<PdfVO> sales_ledger() throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.sales_ledger();
 	}
 
 

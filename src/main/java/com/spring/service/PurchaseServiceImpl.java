@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.CateVO;
 import com.spring.domain.CreditorVO;
+import com.spring.domain.PdfVO;
 import com.spring.domain.ProductVO;
 import com.spring.domain.SearchVO;
 import com.spring.mapper.PurchaseMapper;
@@ -35,5 +36,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public List<CreditorVO> creditorList() {		
 		return mapper.creditorList();
+	}
+
+	@Override
+	public List<PdfVO> purchase_ledger() {
+		// TODO Auto-generated method stub
+		return mapper.purchase_ledger();
 	}
 }

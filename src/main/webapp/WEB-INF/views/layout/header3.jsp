@@ -83,15 +83,15 @@
 						<div class="list-group flex-md-row" id="purchase_sub">
 							<a href="/purchase/price_view" >단가관리</a>
 			<!-- 				<a href="/purchase/purchase_view" role="tab">매입처리</a>  -->
-							<a href="/purchase/purchase_ledger" role="tab">매입원장</a> 
+						
 						<!-- 	<a href="/purchase/amount_outstanding" role="tab">미지급금</a> -->
 							</div>
 					</div>
 					<div class="tab-pane fade" id="sales" role="tabpanel">
 						<div class="list-group flex-md-row" id="sales_sub" >
 							<a href="/sales/sales_creation" >매출등록</a>
-							<a href="/sales/sales_exception_price">판가관리</a>
-							<a href="/sales/sales_ledger" >매출원장</a> 
+				<!-- 			<a href="/sales/sales_exception_price">판가관리</a> -->
+						
 						<!-- 	<a href="/sales/accounts_payable">미수금</a> -->
 						</div>
 					</div>
@@ -103,8 +103,8 @@
 					</div>
 					<div class="tab-pane fade " id="accounting" role="tabpanel">
 						<div class="list-group flex-md-row" id="accounting_sub">
-							<a href="#product_view">매입</a> 
-							<a href="#creditor_view">매출</a> 
+								<a href="/purchase/purchase_ledger" role="tab">매입원장</a> 
+								<a href="/sales/sales_ledger" >매출원장</a> 
 <!-- 							<a href="#customer_view">계산서</a> -->
 						</div>
 					</div>

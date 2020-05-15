@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../layout/header3.jsp"></jsp:include>
  <section>
         <article class="contents">
@@ -45,7 +46,7 @@
               <div class="table">
                 <table>
                   <tr>
-                    <th>No</th>
+                 
                     <th>매입일자</th>
                     <th>구매처코드</th>
                     <th>구매처명</th>
@@ -53,57 +54,28 @@
                     <th>상품코드</th>
                     <th>상품명</th>
                     <th>단위</th>
-                    <th>면/과세</th>
-                    <th>수량</th>
+					<th>수량</th>
                     <th>매입단가</th>
                     <th>매입액</th>
 
-                    <th>카테고리</th>
-
-                    <th>MD</th>
-                  </tr>
-
+<c:forEach var="vo" items="${list}"> 
                   <tr>
-                    <td>1</td>
-                    <td>2020.04.01</td>
-                    <td>1130112345</td>
-                    <td>스파클 1호점</td>
-                    <td>1000</td>
-                    <td>100000</td>
-                    <td>서울우유 플레인요구르트(1.8L_무가당 1.8Kg/EA)</td>
-                    <td>EA</td>
-                    <td>과세</td>
-                    <td>50</td>
-                    <td>345</td>
-                    <td>480,000</td>
-                    <td>우유</td>
-                    <td>홍길동</td>
+                
+                    <td>${vo.regdate}</td>
+                    <td>${vo.creditor_CD}</td>
+                    <td>${vo.creditor_NM}</td>
+                    <td>${vo.center}</td>
+                    <td>${vo.product_CD}</td>
+                    <td>${vo.product_NM}</td>
+                    <td>${vo.unit}</td>                 
+                    <td>${vo.amount}</td>
+                    <td>${vo.product_cost}</td>
+                    <td>${vo.supply}</td>
+                  
+                  
                   </tr>
-
-                  <tr>
-                    <td>2</td>
-                    <td>2020.04.05</td>
-                    <td>1130112345</td>
-                    <td>스파클 1호점</td>
-                    <td>1000</td>
-                    <td>100000</td>
-                    <td>서울우유 플레인요구르트(1.8L_무가당 1.8Kg/EA)</td>
-                    <td>EA</td>
-                    <td>과세</td>
-                    <td>50</td>
-                    <td>345</td>
-                    <td>120,000</td>
-                    <td>우유</td>
-                    <td>홍길동</td>
-                  </tr>
-                  <tr>
-                    <th></th>
-                    <th></th>
-                    <th>1130112345</th>
-                    <th colspan="8">총 금액</th>
-                    <th>600,000</th>
-                    <th colspan="5"></th>
-                  </tr>
+	</c:forEach>
+              
                 </table>
               </div>
             </div>
