@@ -64,8 +64,10 @@
 					width="100px" height="auto" /></a><a data-toggle="list"
 					href="#standartize" role="tab" style="border-radius: 5px;text-decoration:none; ">기준정보</a> <a data-toggle="list"
 					href="#purchase" role="tab" style="border-radius: 5px; text-decoration:none;">구매</a> <a data-toggle="list"
-					href="#sales" role="tab" style="border-radius: 5px;text-decoration:none; ">판매</a> <a data-toggle="list" href="#stock"
-					role="tab" style="border-radius: 5px;text-decoration:none; ">재고</a> <a data-toggle="list" href="#accounting"
+					href="#sales" role="tab" style="border-radius: 5px;text-decoration:none; ">판매</a> 
+			<!-- 		<a data-toggle="list" href="#stock"
+					role="tab" style="border-radius: 5px;text-decoration:none; ">재고</a>  -->
+					<a data-toggle="list" href="#accounting"
 					role="tab" style="border-radius: 5px; text-decoration:none;">결산</a>
 			</div>
 			<div class=" smallMenu">
@@ -73,24 +75,24 @@
 					<div class="tab-pane fade" id="standartize" role="tabpanel">
 					<div class="list-group flex-md-row" id="standartize_sub">
 							<a href="/standartize/product_view" >상품</a> 
-							<a href="/standartize/creditor_view" role="tab">협력사</a> 
-							<a href="/standartize/customer_view" role="tab">고객사</a>
+							<a href="/standartize/creditor_view" role="tab">구매처</a> 
+							<a href="/standartize/customer_view" role="tab">판매처</a>
 							</div>
 					</div>
 					<div class="tab-pane fade " id="purchase" role="tabpanel">
 						<div class="list-group flex-md-row" id="purchase_sub">
 							<a href="/purchase/price_view" >단가관리</a>
-							<a href="/purchase/purchase_view" role="tab">매입처리</a> 
-							<a href="/purchase/purchase_ledger" role="tab">매입원장</a> 
-							<a href="/purchase/amount_outstanding" role="tab">미지급금</a>
+			<!-- 				<a href="/purchase/purchase_view" role="tab">매입처리</a>  -->
+						
+						<!-- 	<a href="/purchase/amount_outstanding" role="tab">미지급금</a> -->
 							</div>
 					</div>
 					<div class="tab-pane fade" id="sales" role="tabpanel">
 						<div class="list-group flex-md-row" id="sales_sub" >
 							<a href="/sales/sales_creation" >매출등록</a>
-							<a href="/sales/sales_ledger" >매출조회</a> 
-							<a href="/sales/sales_exception_price">판가관리</a>
-							<a href="/sales/accounts_payable">미수금</a>
+				<!-- 			<a href="/sales/sales_exception_price">판가관리</a> -->
+						
+						<!-- 	<a href="/sales/accounts_payable">미수금</a> -->
 						</div>
 					</div>
 					<div class="tab-pane fade " id="stock" role="tabpanel">
@@ -101,9 +103,9 @@
 					</div>
 					<div class="tab-pane fade " id="accounting" role="tabpanel">
 						<div class="list-group flex-md-row" id="accounting_sub">
-							<a href="#product_view">채권관리</a> 
-							<a href="#creditor_view">채무관리</a> 
-							<a href="#customer_view">계산서</a>
+								<a href="/purchase/purchase_ledger" role="tab">매입원장</a> 
+								<a href="/sales/sales_ledger" >매출원장</a> 
+<!-- 							<a href="#customer_view">계산서</a> -->
 						</div>
 					</div>
 				</div>

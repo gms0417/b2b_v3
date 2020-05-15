@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.spring.domain.CartVO;
 import com.spring.domain.Center_ptVO;
 import com.spring.domain.CustomerVO;
+import com.spring.domain.PdfVO;
 import com.spring.domain.SalesVO;
 import com.spring.domain.SearchVO;
 
@@ -22,4 +23,6 @@ public interface SalesService {
 	public boolean insert_cu(CustomerVO vo) throws Exception;
 	public boolean update_cu(CustomerVO vo) throws Exception;
 	public CustomerVO select_cu(long customer_rcd) throws Exception;
+	
+	public List<PdfVO> sales_ledger() throws Exception;
 }

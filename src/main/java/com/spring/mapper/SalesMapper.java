@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.spring.domain.CartVO;
 import com.spring.domain.Center_ptVO;
 import com.spring.domain.CustomerVO;
+import com.spring.domain.PdfVO;
 import com.spring.domain.SalesVO;
 import com.spring.domain.SearchVO;
 
@@ -22,5 +23,7 @@ public interface SalesMapper {
 	public int insert_cu(CustomerVO vo);
 	public int update_cu(CustomerVO vo);
 	public CustomerVO select_cu(long customer_rcd);
+	
+	public List<PdfVO> sales_ledger();
 	
 }

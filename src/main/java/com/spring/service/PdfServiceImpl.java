@@ -54,23 +54,26 @@ public class PdfServiceImpl implements PdfService {
 	
 	@Override
 	public List<PdfVO> getOrderList() throws Exception { 
-		
+//		pdf_test();
+		System.out.println("serviceImpl");
 		return mapper.orderList();
 	}
 
 	@Override
 	public List<PdfVO> orderList() throws Exception {
+		
+		
 		return mapper.orderList();
 	}
 
 	
 	
-	   public static void main(String[] args) throws DocumentException, IOException {
+	 public void pdf_test() throws DocumentException, IOException {
 
 		   PurchaseController controller = new PurchaseController();
 		   
-		   List<PdfVO> list = controller.orderList();
-		   System.out.println(list);
+
+		 
 		   
 		   
 		   

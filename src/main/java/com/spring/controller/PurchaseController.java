@@ -47,8 +47,10 @@ public class PurchaseController {
 	
 	
 	@GetMapping(value="purchase_ledger")
-	public void purchase_ledger() {
+	public void purchase_ledger(Model model) {
 		log.info("매입원장 페이지");
+		
+		model.addAttribute("list", service3.purchase_ledger());
 		
 	}
 	
@@ -120,22 +122,12 @@ public class PurchaseController {
 		
 		try {
 			model.addAttribute("list", service4.getOrderList());
-			log.info("!!!!");
+			log.info("일일 주문내역 리스트");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
 	}
 	
-	// 일일 주문내역
-	public List<PdfVO> orderList(){
-		List<PdfVO> list = null;
-		try {
-			
-			list = service4.getOrderList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
+	
 }
