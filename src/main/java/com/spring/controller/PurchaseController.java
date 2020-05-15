@@ -120,22 +120,12 @@ public class PurchaseController {
 		
 		try {
 			model.addAttribute("list", service4.getOrderList());
-			log.info("!!!!");
+			log.info("일일 주문내역 리스트");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
 	}
 	
-	// 일일 주문내역
-	public List<PdfVO> orderList(){
-		List<PdfVO> list = null;
-		try {
-			
-			list = service4.getOrderList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
+	
 }

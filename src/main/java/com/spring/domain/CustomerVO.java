@@ -12,5 +12,6 @@ public class CustomerVO {
    private String address; //주소
    private int center_FK; //센터코드
    private String emp_NM; //담당자명
+   private String email;
    private String password;//비밀번호
 }

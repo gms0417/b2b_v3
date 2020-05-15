@@ -82,8 +82,8 @@
 			<div class="list-group" id="standartize1" role="tablist">
           <ul>
             <li><a data-toggle="list" href="#product_view" role="tab">상품</a></li>
-            <li><a data-toggle="list" href="#creditor_view" role="tab">협력사</a></li>
-            <li><a data-toggle="list" href="#customer_view" role="tab">고객사</a></li>
+            <li><a data-toggle="list" href="#creditor_view" role="tab">구매처</a></li>
+            <li><a data-toggle="list" href="#customer_view" role="tab">판매처</a></li>
           </ul>
 			</div>
 			</div>
@@ -91,9 +91,9 @@
 			<div class="list-group" id="standartize2" role="tablist">
           <ul>
             <li><a data-toggle="list" href="#product_view" role="tab">단가관리</a></li>
-            <li><a data-toggle="list" href="#creditor_view" role="tab">매입처리</a></li>
+         <!--    <li><a data-toggle="list" href="#creditor_view" role="tab">매입처리</a></li> -->
             <li><a data-toggle="list" href="#customer_view" role="tab">매입원장</a></li>
-            <li><a data-toggle="list" href="#customer_view" role="tab">미지급금</a></li>
+<!--             <li><a data-toggle="list" href="#customer_view" role="tab">미지급금</a></li>  -->
           </ul>
 			</div>	
 				</div>		
@@ -101,9 +101,9 @@
 				<div class="list-group" id="standartize3" role="tablist">
           <ul>
             <li><a data-toggle="list" href="#product_view" role="tab">매출등록</a></li>
-            <li><a data-toggle="list" href="#creditor_view" role="tab">매출조회</a></li>
+            <li><a data-toggle="list" href="#creditor_view" role="tab">매출원장</a></li>
             <li><a data-toggle="list" href="#customer_view" role="tab">판가관리</a></li>
-            <li><a data-toggle="list" href="#customer_view" role="tab">미수금</a></li>
+    <!--         <li><a data-toggle="list" href="#customer_view" role="tab">미수금</a></li> -->
           </ul>
 			</div>
 				</div>
@@ -117,9 +117,9 @@
 		<div class="  tab-pane fade"  id="accounting" role="tabpanel">
 		<div class="list-group" id="standartize5" role="tablist">
           <ul>
-            <li><a data-toggle="list" href="#product_view" role="tab">채권관리</a></li>
-            <li><a data-toggle="list" href="#creditor_view" role="tab">채무관리</a></li>
-            <li><a data-toggle="list" href="#customer_view" role="tab">계산서</a></li>
+            <li><a data-toggle="list" href="#product_view" role="tab">매입</a></li>
+            <li><a data-toggle="list" href="#creditor_view" role="tab">매출</a></li>
+        <!--     <li><a data-toggle="list" href="#customer_view" role="tab">계산서</a></li> -->
           </ul>
 			</div>
 				</div>

@@ -30,8 +30,7 @@ public class invoice {
 
 		   PurchaseController controller = new PurchaseController();
 		   
-		   List<PdfVO> list = controller.orderList();
-		   System.out.println(list);
+		   
 		   
 		   
 		   

@@ -30,10 +30,7 @@ $('#center_modal').on('hide.bs.modal', function (e) {
          trObj.style.backgroundColor = oldColor;
       }
    }
-   function clickTrEvent(trObj) {
-      // 행 클릭시 변경 창 보이기
-      $(".edit_row").show();
-   }
+ 
    function edit_close(trObj) {
       // 변경 창 닫기
       $(".edit_row").hide();

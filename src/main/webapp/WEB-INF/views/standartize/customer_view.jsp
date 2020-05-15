@@ -25,25 +25,34 @@
 		}
 	}
 
+
 	function check() {
-		var result = confirm("변경사항을 저장하겠습니까?");
+		var result = confirm("고객사 변경 사항을 저장하겠습니까?");
 		if (result) {
-			pt_update();
+			let form =$("#cu_update");
+			form.submit();
+			$(".update_edit").hide();
+			alert("성공적으로 변경되었습니다.");
 		} else {
+			alert("변경이 실패하였습니다.");
 			return;
 		}
-		//	return result;
 	}
 
 	function check2() {
-		var result = confirm("신규 입력을 저장하겠습니까?");
+		var result = confirm("신규 고객사 입력을 저장하겠습니까?");
 		if (result) {
-			pt_add();
+			let form_add = $("#cu_add");			
+			form_add.submit();
+			$(".add_edit").hide();
+			alert("성공적으로 입력되었습니다.");
 		} else {
+			alert("입력이 실패하였습니다.");
 			return;
-		}
-		//	return result;
+		}		
 	}
+
+
 
 	
 	
@@ -60,8 +69,8 @@
 		var address = td.eq(5).text();
 		var center_FK = td.eq(6).text();
 		var emp_NM = td.eq(7).text();
-		var password = td.eq(8).text();
-
+		var email = td.eq(8).text();
+		var password = td.eq(9).text();
 		
 		
 
@@ -74,6 +83,7 @@
 		document.getElementById("address").value = address;
 		document.getElementById("center_FK").value = center_FK;
 		document.getElementById("emp_NM").value = emp_NM;
+		document.getElementById("email").value = email;
 		document.getElementById("password").value = password;
 
 		
@@ -91,11 +101,11 @@
 		$(".update_edit").hide();
 	}
 
-	function pt_update() {
+	function cu_update() {
 		$.ajax({
-			url : "update_product",
+			url : "update_customer",
 			method : "POST",
-			data : $('#pt_update').serialize(),
+			data : $('#cu_update').serialize(),
 			success : function(data) {
 				if (data === true) {
 					alert("성공적으로 변경되었습니다.");
@@ -109,12 +119,12 @@
 		});
 	}
 
-	function pt_add() {
-		console.log($('#pt_add').serialize());
+	function cu_add() {
+		console.log($('#cu_add').serialize());
 		$.ajax({
-			url : "add_product",
+			url : "add_customer",
 			method : "POST",
-			data : $('#pt_add').serialize(),
+			data : $('#cu_add').serialize(),
 			success : function(data) {
 				console.log("서버 " + data);
 				/* if(data===true){
@@ -125,8 +135,8 @@
 			},
 			error : function(data) {
 				alert("오류");
-			}
-		});
+			}		
+	})
 	}
 </script>
 <link
@@ -195,6 +205,7 @@
                     <th style="padding: .4rem;">배송주소</th>
                     <th style="padding: .4rem;">센터</th>
                     <th style="padding: .4rem;">담당MA</th>
+                    <th style="padding: .4rem;">이메일</th>
                   </tr>
 
 				  <c:forEach var="vo" items="${list_c}">	                  
@@ -208,6 +219,7 @@
                      <td style="padding: .4rem;">${vo.address}</td>
                      <td style="padding: .4rem;">${vo.center_FK}</td>
                      <td style="padding: .4rem;">${vo.emp_NM}</td>
+                     <td style="padding: .4rem;">${vo.email}</td>
                   </tr>
                   </c:forEach>
                 </table>
@@ -225,10 +237,10 @@
 		<a> 고객사 정보 수정</a>
 	</div>
 	<div class="button">
-		<button type="button" onclick="return check();">저장</button>
+		<button type="button" onclick="check();">수정</button>
 		<button type="reset" onclick="javascript:update_edit_close();">닫기</button>
 	</div>
-	<form id="pt_update" action="update_product" method="post">
+	<form id="cu_update" action="update_customer" method="post">
 		<!--   -->
 		<table>
 			<tr>
@@ -247,12 +259,14 @@
 			
 			<tr>
 				<td>사업자번호</td>
-				<td><input id="customer_rcd" type="text" style="width: 100%" name="customer_rcd" />
+				<td colspan="2">
+				<input id="customer_rcd" type="text" style="width: 100%" name="customer_rcd" />
 				</td>
 				<td>사업자명</td>
-				<td><input id="customer_NM" type="text" style="width: 100%" name="customer_NM" /></td>
-				<td>대표자명</td>
-				<td><input id="unit" type="text" style="width: 100%" name="unit" /></td>
+				<td colspan="2">
+				<input id="customer_NM" type="text" style="width: 100%" name="customer_NM" /></td>
+				<!-- <td>대표자명</td>
+				<td><input id="unit" type="text" style="width: 100%" name="unit" /></td> -->
 			</tr>
 			
 			<tr>
@@ -265,8 +279,8 @@
 			
 			
 			<tr>
-				<td>로그인ID</td>
-				<td><input id="customer_cd" type="text" style="width: 100%" name="customer_cd" readonly/></td>
+				<td>이메일</td>
+				<td><input id="eamil" type="text" style="width: 100%" name="email" /></td>
 				<td>PW</td>
 				<td><input id="password" type="text" style="width: 100%" name="password" /></td>
 				
@@ -284,16 +298,16 @@
 		<span class="material-icons"> add_box </span> <a> 신규 고객생성</a>
 	</div>
 	<div class="button">
-		<button type="button" onclick="return check2();">저장</button>
+		<button type="button" onclick="check2();">저장</button>
 		<button type="reset" onclick="javascript:add_edit_close()">닫기</button>
 	</div>
-	<form id="pt_add" action="add_product" method="post">
+	<form id="cu_add" action="add_customer" method="post">
 		<table>
 			<tr>
 				<td>고객코드</td>
 				<td colspan="2">
 				<input type="text" id="customer_cd_a"
-					style="background-color: #e0e0e0;width: 100%; border: 0px;" name="customer_cd" />
+					style="background-color: #e0e0e0;width: 100%; border: 0px;" name="customer_cd1" readonly />
 					${vo.customer_cd}</td>
 					
 					
@@ -306,12 +320,14 @@
 			
 			<tr>
 				<td>사업자번호</td>
-				<td><input id="customer_rcd_a" type="text" style="width: 100%" name="customer_rcd" />
+				<td colspan="2">
+				<input id="customer_rcd_a" type="text" style="width: 100%" name="customer_rcd" />
 				</td>
 				<td>사업자명</td>
-				<td><input id="customer_NM_a" type="text" style="width: 100%" name="customer_NM" /></td>
-				<td>대표자명</td>
-				<td><input id="unit" type="text" style="width: 100%" name="unit" /></td>
+				<td colspan="2">
+				<input id="customer_NM_a" type="text" style="width: 100%" name="customer_NM" /></td>
+				<!-- <td>대표자명</td>
+				<td><input id="unit" type="text" style="width: 100%" name="unit" /></td> -->
 			</tr>
 			
 			<tr>
@@ -324,8 +340,8 @@
 			
 			
 			<tr>
-				<td>로그인ID</td>
-				<td><input id="customer_cd" type="text" style="width: 100%" name="customer_cd" readonly/></td>
+				<td>이메일</td>
+				<td><input id="email" type="text" style="width: 100%" name="email" /></td>
 				<td>PW</td>
 				<td><input id="password_a" type="text" style="width: 100%" name="password" /></td>
 				
