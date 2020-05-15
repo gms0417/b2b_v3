@@ -178,7 +178,7 @@ public class HomeController {
                   "          <hr> " + 
                   "        </div>      " + 
                   "      <div style=\"text-align: center;\"> " + 
-                  "              <a   href='http://localhost:8080/reset-password?u="+u+
+                  "              <a   href='http://192.168.0.9:8080/reset-password?u="+u+
                   "&key=" + key+"' target='_blenk'" + 
                   "                style=\"                                     " + 
                   "                  background-color: #007bb5; " + 

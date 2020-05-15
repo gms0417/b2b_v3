@@ -185,9 +185,11 @@
 						"customer_pk" : cd,
 						"ptcon_fk" : td.eq(16).val(),
 						"delivery_date" : td.eq(15).text(),
-						"amount" : td.eq(10).children,
+						"amount" : td.eq(10).children().val(),
 						"supply_price" : td.eq(9).text(),
 						"vat" : td.eq(12).text(),
+						"tax_NM":td.eq(8).text(),
+						"exp_D":td.eq(1).text()
 					},
 					success : function(data) {
 					},

@@ -43,7 +43,7 @@
 <!--ICON-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" />
-<link rel="stylesheet" href="/resources/dist/css/style2.css?2" />
+<link rel="stylesheet" href="/resources/dist/css/style2.css" />
 <title>홈</title>
 
 

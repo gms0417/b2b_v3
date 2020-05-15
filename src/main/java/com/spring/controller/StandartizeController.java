@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -159,12 +160,15 @@ public class StandartizeController {
 	@PostMapping(value = "add_customer")
 	public String add_customer(CustomerVO vo, RedirectAttributes rttr) {
 		log.info("신규 고객사 등록" + vo);
+		passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		boolean result;
 		try {
+			String password = new TempKey().getKey(10, false);
+			vo.setPassword(password);
 			result = service2.insert_cu(vo);
+			 vo.setPassword(passwordEncoder.encode(vo.getPassword()));
 			if (result == true) {
 				vo = service2.select_cu(vo.getCustomer_rcd());
-				String password = new TempKey().getKey(10, false);
 				String key = new TempKey().getKey(50, false);
 				PwVO pw = new PwVO();
 				pw.setEmail(vo.getEmail());
@@ -201,7 +205,7 @@ public class StandartizeController {
 								"          text-align: center; " + 
 								"        \" " + 
 								"      > " + 
-								"        <p>(주)삼정식품</p> " + 
+								"        <p>(주)SJFOOD</p> " + 
 								"    " + 
 								"      </div> " + 
 								"      <div style=\"padding: 0 50px;\"> " + 
@@ -216,17 +220,17 @@ public class StandartizeController {
 								"          <table style=\"padding: 30px;\"> " + 
 								"              <tr> " + 
 								"                  <th style=\"text-align-last: right;\">회사명</th> " + 
-								"                  <td>OOOOOOOOO</td> " + 
+								"                  <td>"+vo.getCustomer_NM()+"</td> " + 
 								"                </tr> " + 
 								"                 " + 
 								"                <tr> " + 
 								"                    <th style=\"text-align-last: right;\">아이디</th> " + 
-								"                    <td>OOOOOOOOO</td> " + 
+								"                    <td>"+vo.getCustomer_cd()+"</td> " + 
 								"                </tr> " + 
 								"                 " + 
 								"                <tr> " + 
 								"                    <th style=\"text-align-last: right;\">초기 비밀번호</th> " + 
-								"                    <td>OOOOOOOOO</td> " + 
+								"                    <td>"+vo.getPassword()+"</td> " + 
 								"                </tr> " + 
 								"                </table> " + 
 								"           " + 
@@ -240,7 +244,7 @@ public class StandartizeController {
 								"          <hr> " + 
 								"             <br> <br> " + 
 								"      <div style=\"text-align: center;\"> " + 
-								"              <a  href='http://192.168.10.9:8080/reset-password?u=cu"
+								"              <a  href='http://192.168.0.9:8080/reset-password?u=cu"
 								+ "&key=" + key + "' target='_blenk'"+
 								"                style=\"                                     " + 
 								"                  background-color: #007bb5; " + 
@@ -270,7 +274,6 @@ public class StandartizeController {
 						sendMail.setFrom("demian1722@naver.com", "관리자"); // 보낸이
 						sendMail.setTo(vo.getEmail()); // 받는이
 						sendMail.send();
-
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

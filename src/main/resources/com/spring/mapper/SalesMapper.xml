@@ -115,7 +115,7 @@ where customer_pk = #{customer_pk} order by delivery_date
 	
 	      <!-- 고객사 신규 가져오기 -->
       <select id="select_cu" resultType="com.spring.domain.CustomerVO">
-         select * from customer_tb where customer_rcd = #{customer_rcd};
+         select * from customer_tb where customer_rcd = #{customer_rcd}
       </select>
 	
 </mapper>
