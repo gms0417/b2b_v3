@@ -18,6 +18,9 @@ public interface SalesMapper {
 	public int cart_add(CartVO vo);
 	public int cart_update(CartVO vo);
 	public int cart_delete(CartVO vo);
-	public List<CartVO> cart_List(@Param("customer") long customer);
+	public List<CartVO> cart_List(@Param("customer_pk") long customer_pk);
+	public int insert_cu(CustomerVO vo);
+	public int update_cu(CustomerVO vo);
+	public CustomerVO select_cu(long customer_rcd);
 	
 }

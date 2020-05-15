@@ -18,5 +18,8 @@ public interface SalesService {
 	public boolean cart_add(CartVO vo) throws Exception;
 	public boolean cart_update(CartVO vo) throws Exception;
 	public boolean cart_delete(CartVO vo) throws Exception;
-	public List<CartVO> cart_List(long customer)throws Exception;
+	public List<CartVO> cart_List(long customer_pk)throws Exception;
+	public boolean insert_cu(CustomerVO vo) throws Exception;
+	public boolean update_cu(CustomerVO vo) throws Exception;
+	public CustomerVO select_cu(long customer_rcd) throws Exception;
 }

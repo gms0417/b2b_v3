@@ -165,17 +165,38 @@
 		} else {
 			pt_list();
 		}
-
 	}
-
+	
 	function save() {
 		var cd = document.getElementById("customer_cd").value;
 		if (cd === '') {
 			alert("업체를 선택해 주세요");
 		} else {
-			alert("성공");
+			var list = [];
+			var param = [];
+			var checkbox = $("input:checkbox.cart:checked");
+			checkbox.each(function(i) {
+				var tr = checkbox.parent().parent().eq(i);
+				var td = tr.children();
+				$.ajax({
+					url : "cart_update",
+					method : "POST",
+					data : {
+						"customer_pk" : cd,
+						"ptcon_fk" : td.eq(16).val(),
+						"delivery_date" : td.eq(15).text(),
+						"amount" : td.eq(10).children,
+						"supply_price" : td.eq(9).text(),
+						"vat" : td.eq(12).text(),
+					},
+					success : function(data) {
+					},
+					error : function(data) {
+					}
+				});
+			});
+			cart_list();
 		}
-
 	}
 	function add_cart() {
 		var cd = document.getElementById("customer_cd").value;
@@ -185,59 +206,95 @@
 			var list = [];
 			var param = [];
 			var checkbox = $("input:checkbox.pt:checked");
-			checkbox.each(function(i){
+			checkbox.each(function(i) {
 				var tr = checkbox.parent().parent().eq(i);
 				var td = tr.children();
 				var date = new Date(td.eq(16).val());
+				$.ajax({
+					url : "cart_add",
+					method : "POST",
+					data : {
+						"customer_pk" : cd,
+						"exp" : td.eq(11).text(),
+						"ptcon_fk" : td.eq(14).val(),
+						"delivery_date" : td.eq(16).val(),
+						"amount" : 1,
+						"supply_price" : td.eq(8).text(),
+						"vat" : td.eq(9).text(),
+						"column5" : td.eq(10).text()
+					},
+					success : function(data) {
 
-			$.ajax({
-				url : "cart_add",
-				method : "POST",
-				data :{"customer_pk":cd,
-			 	"exp_D" : td.eq(11).text(),
-				"ptcon_fk" :td.eq(14).val(),
-				"delivery_date" :td.eq(16).val() ,
-				"amount" : 1,								
-				"supply_price" :td.eq(8).text() ,
-				"vat":td.eq(9).text() ,
-				"column5":td.eq(10).text() },
-				success : function(data) {
-					alert("성공");
-				}
-					});
+					},
+					error : function(data) {
+					}
+				});
 			});
 			cart_list();
+
 		}
 	}
-	function cart_list(){
+
+	function cart_list() {
 		var cd = document.getElementById("customer_cd").value;
-		$.ajax({
-			url : "cart_list",
-			method : "POST",
-			data :{"customer_pk":cd,
-		 	},
-			success : function(data) {
-				alert(data);
-				var table = "<table><tr><th>선택</th>	<th>마감일</th><th>센터</th><th>상품코드</th>	<th>상품명</th><th>단위</th><th>원산지</th><th>보관방법</th>"+
-				"<th>면/과세</th>	<th>단가</th>	<th>주문수량</th><th>부가세</th>	<th>합계</th>	<th>구매처</th><th>인수일자</th>	</tr>";
-				for(var i=0; i<data.length;i++){
-					var customer_pk = data[i].customer_pk;
-					var exp_D = data[i].exp_D;
-					var ptcon_fk = data[i].ptcon_fk;
-					var delivery_date = data[i].delivery_date;
-					var amount = data[i].amount;
-					var supply_price = data[i].supply_price;
-					var vat = data[i].vat;
-					var column5 = data[i].column5;
-					
-					table+="<tr><td>"++ "</td><td>"
-					table+="</td></tr>";
-				}
-				table +="</table>";
-				$('#cart').html(table);
-				}
+		$
+				.ajax({
+					url : "cart_list",
+					method : "POST",
+					data : {
+						"customer_pk" : cd,
+					},
+					success : function(data) {
+						var table = "<table><tr><th>선택</th>	<th>마감일</th><th>센터</th><th>상품코드</th>	<th>상품명</th><th>단위</th><th>원산지</th><th>보관방법</th>"
+								+ "<th>면/과세</th>	<th>단가</th>	<th>주문수량</th><th>공급가</th><th>부가세</th>	<th>합계</th>	<th>구매처</th><th>인수일자</th>	</tr>";
+						for (var i = 0; i < data.length; i++) {
+							var customer_pk = data[i].customer_pk;
+							var exp_D = data[i].exp_D;
+							var delivery_date = data[i].delivery_date;
+							var ptcon_fk = data[i].ptcon_fk;
+							var amount = data[i].amount;
+							var supply_price = data[i].supply_price;
+							var vat = data[i].vat;
+							var column5 = data[i].column5;
+							var pt_cd = data[i].pt_cd;
+							var pt_NM = data[i].pt_NM;
+							var unit = data[i].unit;
+							var origin_NM = data[i].origin_NM;
+							var storage_NM = data[i].storage_NM;
+							var tax_NM = data[i].tax_NM;
+							var sale_cost = data[i].sale_cost;
+							var creditor_fk = data[i].creditor_fk;
+							var center_fk = data[i].center_fk;
+							table += "<tr><td><input type='checkbox' class='cart' /></td>"
+							table += "<td>"
+									+ exp_D
+									+ "</td><td>"
+									+ center_fk
+									+ "</td><td>"
+									+ pt_cd
+									+ "</td><td>"
+									+ pt_NM
+									+ "</td><td>"
+									+ unit
+									+ "</td><td>"
+									+ origin_NM
+									+ "</td><td>"
+									+ storage_NM
+									+ "</td><td>"
+									+ tax_NM
+									+ "</td><td>"
+									+ sale_cost
+									+ "</td><td><input type='text' class='amount' value="+amount+ "></td><td>"
+									+ supply_price + "</td><td>" + vat
+									+ "</td><td>" + column5 + "</td><td>"
+									+ creditor_fk + "</td><td>" + delivery_date
+									+ "</td><input type='hidden' value="+ptcon_fk+"><tr>"
+						}
+						table += "</table>";
+						$('#cart').html(table);
+					}
 				});
-			
+
 	}
 
 	function minus_cart() {

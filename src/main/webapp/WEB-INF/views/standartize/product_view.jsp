@@ -174,9 +174,9 @@
 			//검색 후 모달 창 닫기		
 			
 			searchForm.submit();
-		})
+		}
 	
-	}
+	
 </script>
 <section>
 	<!--본문영역-->
@@ -278,8 +278,8 @@
 		<button type="reset" onclick="javascript:update_edit_close();">
 		<span class="material-icons"> highlight_off </span> 닫기</button>
 
-		<button type="button" onclick="check();">수정</button>
-		<button type="reset" onclick="javascript:update_edit_close();">닫기</button>
+		<!-- <button type="button" onclick="check();">수정</button>
+		<button type="reset" onclick="javascript:update_edit_close();">닫기</button> -->
 
 	</div>
 	<form id="pt_update" action="update_product" method="post">
@@ -315,8 +315,6 @@
 			</tr>
 			<tr>
 				<td>원 산 지</td>
-				<td><select id="origin" class="form-control" name="origin_nm" style="width: 100%">
-
 				<td><select id="origin" class="form-control" name="origin_CD"
 					style="width: 80%">
 

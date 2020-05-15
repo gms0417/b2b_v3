@@ -59,9 +59,26 @@ public class SalesServiceImpl implements SalesService {
 	}
 
 	@Override
-	public List<CartVO> cart_List(long customer) throws Exception {
+	public List<CartVO> cart_List(long customer_pk) throws Exception {
 		
-		return mapper.cart_List(customer);
+		return mapper.cart_List(customer_pk);
 	}
+	
+	@Override
+	public boolean insert_cu(CustomerVO vo) throws Exception {
+		return mapper.insert_cu(vo)>0?true:false;
+	}
+
+	@Override
+	public boolean update_cu(CustomerVO vo) throws Exception {
+		return mapper.update_cu(vo)>0?true:false;
+	}
+
+	@Override
+	public CustomerVO select_cu(long customer_rcd) throws Exception {
+		
+		return mapper.select_cu(customer_rcd);
+	}
+
 
 }

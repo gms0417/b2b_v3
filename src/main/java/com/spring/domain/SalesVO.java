@@ -16,5 +16,6 @@ public class SalesVO {
 	private int cost;	//합계
 	private int exp_D; 	// 마감일
 	private int exp_T;	// 마감시간
+	private int exp;
 	
 }

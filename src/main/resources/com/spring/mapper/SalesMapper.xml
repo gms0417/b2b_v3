@@ -72,7 +72,7 @@
 
 	<insert id="cart_add">
 		insert into cart_tb values
-		(#{customer_pk},#{exp_D},#{ptcon_fk},#{delivery_date},#{amount},
+		(#{customer_pk},(select to_date(#{delivery_date},'YYYY-MM-DD')-#{exp} from dual),#{ptcon_fk},#{delivery_date},#{amount},
 		#{supply_price},
 		#{vat},
 		#{column5})
@@ -83,14 +83,39 @@
 	set amount=#{amount} ,supply_price=#{supply_price}*#{amount} ,
 	 vat =#{supply_price}*#{amount}*(select tax_cd from tax_tb where tax_NM=#{tax_NM})*0.1,
 	 column5=(#{supply_price}+(#{supply_price}*(select tax_cd from tax_tb where tax_NM='과세')*0.1))*#{amount}
-	 where ptcon_fk = #{ptcon_fk} and customer_pk = #{customer_pk} and delivery_date=#{delivery_date}
+	 where ptcon_fk = #{ptcon_fk} and customer_pk = #{customer_pk} and exp_D=#{exp_D}
 	</update>
 	
 	<delete id="cart_delete">
 	delete from cart_tb where ptcon_fk = #{ptcon_fk} and customer_pk = #{customer_pk} and delivery_date=#{delivery_date}
 	</delete>
-	
+	 
 	<select id="cart_List" resultType="com.spring.domain.CartVO">
-	select * from cart_tb where customer_pk = #{customer} order by delivery_date
+	select customer_pk,ptcon_fk,(select to_char(c.delivery_date,'YYYY-MM-DD') from dual) delivery_date,(select to_char(c.exp_d,'YYYY-MM-DD')from dual) exp_D,amount,supply_price,vat,column5,origin_nm,center_fk,unit,pt_cd,pt_nm,storage_nm,sale_cost,tax_nm,cate_nm,creditor_fk  from cart_tb c 
+left join(select * from productcon_tb left join (select origin_nm,unit,pt_cd,pt_nm,storage_nm,tax_nm,cate_nm from product_tb
+left join storage_tb on storage_fk=storage_cd
+left join tax_tb on tax_fk=tax_cd
+left join category_tb on cate_cd=category_fk
+left join origin_tb on origin_cd=origin_fk)on pt_cd = pt_fk)on ptcon_fk = ptcon_cd
+where customer_pk = #{customer_pk} order by delivery_date
 	</select>
+	
+	<!-- 고객사 신규 등록 -->
+	<insert id="insert_cu">
+		insert into customer_tb(customer_cd, pre_NM, customer_rcd, customer_NM, address, center_FK, emp_fk, email, password) 
+		values(CU_CD.NEXTVAL,#{pre_NM},#{customer_rcd},#{customer_NM},#{address},#{center_FK}, (select emp_cd from emp_tb where emp_NM=#{emp_NM}),#{email},#{password})
+	</insert> 
+	
+	<!-- 고객사 수정 등록-->
+	<update id="update_cu">
+		update customer_tb 
+		set pre_NM=#{pre_NM}, customer_rcd=#{customer_rcd}, customer_NM=#{customer_NM}, address=#{address}, center_FK=#{center_FK}, emp_fk=(select emp_cd from emp_tb where emp_NM=#{emp_NM}),email=#{email},password=#{password} 
+		where customer_cd=#{customer_cd}
+	</update>
+	
+	      <!-- 고객사 신규 가져오기 -->
+      <select id="select_cu" resultType="com.spring.domain.CustomerVO">
+         select * from customer_tb where customer_rcd = #{customer_rcd};
+      </select>
+	
 </mapper>

@@ -104,11 +104,11 @@ public class SalesController {
 		return list;
 	}
 	
-	//장바구니 담기
+	//장바구니 추가
 		@PostMapping(value="cart_add")
 		@ResponseBody
 		public boolean  cart_add(CartVO vo) {
-			log.info("판매처 위치에 따른 상품리스트");
+			log.info("장바구니 추가");
 		
 			try {		
 				service3.cart_add(vo);
@@ -119,11 +119,25 @@ public class SalesController {
 			return false;
 		}
 		
-		//장바구니 담기
+		//장바구니 업데이트
+		@PostMapping(value="cart_update")
+		@ResponseBody
+		public boolean  cart_update(CartVO vo) {
+			log.info("장바구니 업데이트");
+		
+			try {		
+				service3.cart_update(vo);
+				 return true;
+			} catch (Exception e) {
+				e.printStackTrace();				
+			}
+			return false;
+		}
+		//장바구니 리스트
 				@PostMapping(value="cart_list")
 				@ResponseBody
 				public List<CartVO>  cart_list(long customer_pk) {
-					log.info("판매처 위치에 따른 상품리스트");
+					log.info("장바구니 리스트");
 					List<CartVO> list= null;
 					try {		
 						list = service3.cart_List(customer_pk);
