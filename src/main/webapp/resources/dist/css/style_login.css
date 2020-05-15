@@ -1,105 +1,225 @@
+
+
+
 .logo{
-	
-	    background: linear-gradient(to right, #007bb5, #0079b4);
+   
+  background: linear-gradient(to right, #007bb5, #0079b4);
 }
 
 
 .tab_menu{
-	width:100%;
-    justify-content: space-around;
-    display: inline-flex;
-    flex-direction : row;
-    
+width:100%;
+justify-content: space-around;
+display: inline-flex;
+flex-direction : row;
+
 }
 
 .tabmenu label {
-    display: inline-flex;
-    font-size: 13px;
-    padding: 5px 5px;
-    text-align: center;
-    font-weight: bold;  
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 3px 3px 0 0;
-    color:#777;
-    border-width:1px 1px 0 0;
-    cursor:pointer;
+font-size: 14px;
+color: #dbdbdb;
+cursor:pointer;
+width: 80px;
+text-align: center;
+padding: 5px;
+font-family: "Nanum Gothic", sans-serif;
+
 
 }
 .tabmenu input:nth-child(1):checked ~ div> label:nth-of-type(1) {
-    background-color:#186dbf;
-    color:white;
+
+  text-align: center;
+  font-weight: 600;
+  color:white;
+  background-color: #00a4d3;
+  border: 1px solid #00a4d3;
+  border-radius: 5px;
+ 
+
 }
 .tabmenu input:nth-child(2):checked ~ div>label:nth-of-type(2) {
-    background-color:#186dbf;
-    color:white;}
+  text-align: center;
+  font-weight: 600;
+  color:white;
+  background-color: #00a4d3;
+  border: 1px solid #00a4d3;
+  border-radius: 5px;
+ 
+}
+
 .tabmenu input:nth-child(3):checked ~ div>label:nth-of-type(3) {
-    background-color:#186dbf;
-    color:white;}
+  text-align: center;
+  font-weight: 600;
+  color:white;
+  background-color: #00a4d3;
+  border: 1px solid #00a4d3;
+  border-radius: 5px;
+ 
+}
+
 .tabmenu input:nth-child(4):checked ~ div>label:nth-of-type(4) {
-    background-color:#186dbf;
-    color:white;}
+  text-align: center;
+  font-weight: 600;
+  color:white;
+  background-color: #00a4d3;
+  border: 1px solid #00a4d3;
+  border-radius: 5px;
+ 
+}
+
 
 .tabmenu  > *{
- display: none; 
+display: none; 
 }
 
 .tabmenu > div.tab_menu{
-	display:block;
+display:flex;
+
 }
 
 .tabmenu input:nth-child(1):checked ~ .tab1_content,.tabmenu input:nth-child(2):checked ~ .tab2_content,.tabmenu input:nth-child(3):checked ~ .tab3_content,.tabmenu input:nth-child(4):checked ~ .tab4_content{
-    display: block;
+display: block;
+
 }
 
 .tabmenu .tab1_content,
 .tabmenu .tab2_content,
 .tabmenu .tab3_content,
 .tabmenu .tab4_content {
-  
-    padding: 5px;
-    width: 100%;
-    
-    
+padding: 5px;
+width: 100%;
+
+
 }
 .tabmenu label:nth-of-type(1):hover{
-    background-color:#68b6ff;
-    color:white;
+font-weight: 600;
+color:white;
 }
 .tabmenu label:nth-of-type(2):hover{
-    background-color:#68b6ff;
-    color:white;
+font-weight: 600;
+color:white;
 }
 .tabmenu label:nth-of-type(3):hover{
-    background-color:#68b6ff;
-    color:white;
+font-weight: 600;
+color:white;
 }   
 .tabmenu label:nth-of-type(4):hover{
-    background-color:#68b6ff;
-    color:white;
+font-weight: 600;
+color:white;
+
 }
 
 form{
-    display: inline-flexbox;
-    text-align: center;
-}
-input{
-    width: 80%;
-    height: 30px;
-    margin-top: 20px;
-    box-sizing: border-box;
-  border: 1px solid #ababab;
-  background-color: white;
+/* display: inline-flexbox; */
+text-align: center;
 }
 
-button {
-  border: 1px solid #ababab;
-  width: 80%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 50px;
-  background-color:  #186dbf;
+.form-control{
+  background-color: unset;
+  border-radius: 0px;
+  border-bottom: 2px solid #00a4d3;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  height: 30px;
+
+ 
+ font-size: 15px; 
+ 
+
+}
+
+
+.btn-primary {
+height: 40px;
+background-color:  #00a4d3;
+color: white;
+font-size: 20px;
+border-radius: 0px;
+border : 0px;
+
+}
+
+/* button {
+
+width: 80%;
+margin-top: 20px;
+margin-bottom: 20px;
+height: 50px;
+background-color:  #007bb5;
+color: white;
+font-size: 20px;
+
+}
+ */
+
+
+
+
+
+ 
+  .side{
+  display: flex;  
+  height: 950px;
+}
+
+
+.side-1{
+  width: 450px;
+  background-color:#00a4d3;
+  padding-right: 30px;
+}
+
+
+
+.arrow_right { 
+  width: 0; height: 0; border-left: 15px solid #00a4d3; 
+  border-top: 15px solid transparent; 
+  border-bottom: 15px solid transparent;
+  margin-top: 200px;
+  }
+
+.card{
+  background-color: initial;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.0)!important;
+}
+
+
+a{
+  color:white;
+  
+}
+
+.h4{
   color: white;
-  font-size: 20px;
-  border-radius: 5px;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 10px;
+  padding-bottom: 50px;
+}
+
+
+.container{
+  width:800px;
+  margin-left: 10px;
+  margin-top: 50px;
+}
+
+
+.side-logo{
+  width: 100%;
+}
+
+
+.loginp_notice{
+  float: right;
+  color: white;
+  padding-top: 100px;
+  text-align: right;
+}
+
+li{
+  
+  list-style: none;
+  font-family: "Nanum Gothic", sans-serif;
 }
