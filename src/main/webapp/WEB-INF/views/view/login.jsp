@@ -17,10 +17,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
-<<<<<<< HEAD
-	
-	
-	<link rel="stylesheet" href="resources/dist/css/style_login.css" />
+<link rel="stylesheet" href="resources/dist/css/style_login.css" />
 	
 	      <!--FONT-->
       <link
@@ -52,12 +49,10 @@ body{
 
 
   </style>
-=======
 <link rel="stylesheet" href="resources/dist/css/style_login.css?121" />
 <title>Login</title>
->>>>>>> branch 'master' of https://github.com/gms0417/b2b_v3
 </head>
-<<<<<<< HEAD
+
 
 
 
@@ -197,7 +192,7 @@ body{
             <div class="form-group">
              <input id="" class="form-control form-control-user" type="password" placeholder="패스워드" name="pw" required>
              </div>
-                <button class="btn btn-primary btn-user btn-block" type="submit" >관리자 로그인</button>
+                <button class="btn btn-primary btn-user btn-block" type="submit" >LOGIN</button>
                  <input type="hidden" name="group_GB" value="a">
            </form>
                  <hr>
@@ -231,7 +226,6 @@ body{
 
 
 
-=======
 <script>
 	var login = '${login}';
 	if (login === "fail") {
@@ -363,5 +357,4 @@ body{
 		</div>
 	</div>
 </body>
->>>>>>> branch 'master' of https://github.com/gms0417/b2b_v3
 </html>
