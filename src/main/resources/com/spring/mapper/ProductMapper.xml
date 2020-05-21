@@ -57,9 +57,9 @@
 
 <!-- 동적 sql -->
 <sql id="criteria">
-	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+	<trim prefix="(" suffix=") AND" prefixOverrides="AND">
 		<foreach collection="typeArr" item='type'>
-			<trim prefix="OR">
+			<trim prefix="AND">
 				<choose>
 					<when test="type=='S'.toString()">
 						pt_cd like '%'||#{keyword}||'%'

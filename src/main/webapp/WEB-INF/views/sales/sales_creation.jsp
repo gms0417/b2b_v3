@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="../layout/header3.jsp"></jsp:include>
+<jsp:include page="../layout/header4.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(function() {
@@ -83,7 +83,7 @@
 		var cd = $(obj).children().eq(0).text();
 		var nm = $(obj).children().eq(1).text();
 		document.getElementById("customer_cd").value = cd;
-		document.getElementById("customer_NM").value = nm;
+// 		document.getElementById("customer_NM").value = nm;
 
 		pt_list();
 		cart_list();

@@ -153,7 +153,7 @@ function creditor_search(){
 		}
 	      });
 	      }
-	      
+
 function center_search(){
 	   if($('#center_key').val()=='') {
 	            alert("검색값을 입력해주세요");}
