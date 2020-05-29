@@ -4,6 +4,7 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -18,7 +19,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"  p:order="2">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
@@ -26,6 +27,12 @@
 	<context:component-scan base-package="com.spring.controller" />
 	
 	
+	<!-- [PDF]CustomView: BeannameViewResolver는 파일을 등록해놓으면 id로 찾아간다는 것. -->
+    <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"
+    p:order="1" />
 	
+	
+	<!-- pdf 파일 넘기기 -->
+    <beans:bean id="pdfView" class="com.spring.pdf.PdfBuilder" />
 	
 </beans:beans>

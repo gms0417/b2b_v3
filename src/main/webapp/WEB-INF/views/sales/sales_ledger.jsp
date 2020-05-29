@@ -71,7 +71,7 @@
                   <tr>
                    
                     <td>${vo.regdate}</td>
-                    <td>${vo.order_CD}</td>
+                    <td><a href="pdfView?order_CD=${vo.order_CD}" id="pdfView" name="pdfView">${vo.order_CD}</a></td>
                     <td>${vo.customer_NM}</td>
                     <td>${vo.center}</td>
                     <td>${vo.product_CD}</td>

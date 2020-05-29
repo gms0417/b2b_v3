@@ -6,6 +6,11 @@ import com.spring.domain.PdfVO;
 
 public interface PdfMapper {
 	
-	public List<PdfVO>orderList();
+	public List<PdfVO>orderList();	
+	public List<PdfVO> pdf();
 
+
+	
+	
+	public  List<PdfVO> pdfView (String order_CD);
 }

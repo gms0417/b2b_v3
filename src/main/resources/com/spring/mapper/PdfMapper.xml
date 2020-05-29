@@ -4,9 +4,6 @@
 
 
 
-<!-- 공급받는자용 정보 가져오기 -->
-
-
 
 
 <!-- 주문번호, 고객코드, 상품연결코드, 상품명, 구매처, 수량, 단가, 단위, 면과세, 센터 -->
@@ -50,5 +47,71 @@ and
 ctb.customer_cd=ot.customer_fk
 </select>
 
+
+
+
+
+<!-- 주문번호로 주문리스트 가져오기 -->
+<select id="pdfView" resultType="com.spring.domain.PdfVO"  parameterType="String">
+select  
+/*+INDEX_DESC(customer_tb pk_customer_tb)*/rownum rn,
+order_pk order_CD, 
+ot."date" regdate,
+creditor_fk creditor_CD,
+
+ct.creditor_nm creditor_NM,
+ct.pre_nm pre_NM, 
+ct.address adress,
+
+
+ot.customer_fk customer_CD,
+ctb.customer_nm customer_NM,
+ctb.pre_nm c_pre_nm,
+ctb.address c_address,
+ctb.contact c_contact,
+ctb.customer_rcd c_rcd,
+ctb.emp_fk emp_fk,
+et.emp_nm emp_nm,
+et.phone emp_phone,
+
+
+p.center_fk center,
+pd.pt_cd product_CD,
+pd.pt_nm product_NM, 
+ptcon_pk, 
+pd.tax_fk tax,
+pd.unit unit,
+ot.amount amount,
+
+
+p.purchase_cost product_cost,
+p.purchase_cost*ot.amount supply,
+(p.purchase_cost*ot.amount)*tax_fk*0.1 tax_sum,
+((p.purchase_cost*ot.amount)*tax_fk*0.1)+(p.purchase_cost*ot.amount) total,
+
+
+p.sale_cost s_product_cost,
+p.sale_cost*ot.amount s_supply,
+(p.sale_cost*ot.amount)*tax_fk*0.1 s_tax_sum,
+((p.sale_cost*ot.amount)*tax_fk*0.1)+(p.sale_cost*ot.amount) s_total
+
+
+from order_detail_tb o, productcon_tb p, order_tb ot, product_tb pd, creditor_tb ct, customer_Tb ctb, emp_tb et
+where
+o.ptcon_pk=p.ptcon_cd
+and
+o.order_pk=ot.order_cd
+and
+p.pt_fk=pd.pt_cd
+and
+p.creditor_fk=ct.creditor_cd
+and
+ctb.customer_cd=ot.customer_fk
+and
+ctb.emp_fk = et.emp_cd
+and
+
+order_cd=#{order_CD}
+</select>
 
 </mapper>

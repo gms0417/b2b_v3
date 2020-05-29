@@ -11,8 +11,10 @@ import com.spring.domain.PdfVO;
 
 public interface PdfService {
 	public List<PdfVO> getOrderList() throws Exception;	
+	public List<PdfVO> orderList() throws Exception;		
 
-
-
-	public List<PdfVO> orderList() throws Exception;
+	
+	
+	public  List<PdfVO> pdfView (String order_CD);
+	
 }
